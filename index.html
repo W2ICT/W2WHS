@@ -1300,6 +1300,63 @@ body.hlocked #hmonbar{visibility:hidden}
 @media (max-width:1100px) and (min-width:701px){:root{--lw:176px}}
 @media (min-width:1500px){:root{--lw:230px}}
 #hlegend,#hmonbar{width:var(--lw);box-sizing:border-box}
+
+/* ───── Dashboard: ภาพรวมแบบ Visual (ย่อยง่าย) ───── */
+.hd-sum{margin:0 0 12px;padding:10px 14px;font-size:clamp(14px,1.5vw,16.5px);border:1px solid var(--line);border-left:4px solid var(--sc,var(--accent));background:var(--hover);border-radius:10px;line-height:1.7}
+.hd-sum .mon-chip{font-size:12px;margin-left:6px;padding:1px 12px}
+.hd-hero{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:12px}
+.hd-hc{display:flex;flex-direction:column;gap:6px}
+.hd-hrow{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.hd-ring{width:128px;height:128px;flex:none}
+.hd-ring-bg,.hd-donut-bg{fill:none;stroke:var(--hover);stroke-width:14}
+.hd-ring-fg{fill:none;stroke-width:14}
+.hd-ring-n{font:800 27px system-ui,sans-serif;fill:var(--fg)}
+.hd-ring-l{font-size:11px;fill:var(--muted)}
+.hd-hn{display:flex;flex-direction:column;min-width:0}
+.hd-hn b{font-size:clamp(26px,3vw,36px);line-height:1.05;font-variant-numeric:tabular-nums}
+.hd-hn span{font-size:13px}.hd-hn small{font-size:12px;color:var(--muted)}
+.hd-days{font-size:clamp(34px,4vw,48px);font-weight:800;line-height:1.05;font-variant-numeric:tabular-nums}
+.hd-days small{font-size:.38em;font-weight:600;color:var(--muted)}
+.hd-scale{position:relative;display:flex;height:12px;margin:30px 0 4px;gap:2px}
+.hd-scale>i{display:block;min-width:0;height:100%}
+.hd-scale>i:first-child{border-radius:6px 0 0 6px}.hd-scale>i:nth-child(4){border-radius:0 6px 6px 0}
+.hd-mk{position:absolute;top:-8px;width:0;height:28px;border-left:2px solid var(--fg)}
+.hd-mk em{position:absolute;bottom:100%;left:0;transform:translateX(-50%);font-style:normal;font-size:11px;white-space:nowrap;color:var(--fg);padding-bottom:2px}
+.hd-mk.b{border-left-style:dashed}
+.hd-sticks{position:relative;height:16px;font-size:11px;color:var(--muted)}
+.hd-sticks span{position:absolute;transform:translateX(-50%)}
+.hd-lv{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:6px}
+.hd-lvc{border:1px solid var(--line);border-top:3px solid var(--c);border-radius:8px;padding:6px 4px;text-align:center}
+.hd-lvc b{display:block;font-size:26px;line-height:1.1;color:var(--c)}
+.hd-lvc span{font-size:11px;color:var(--muted);white-space:nowrap}
+.hd-ftrack{display:block;height:18px}
+.hd-fcap{display:block;height:100%;background:var(--hover);border:1px solid var(--line);border-radius:0 4px 4px 0;overflow:hidden}
+.hd-fcap i{display:block;height:100%}
+.hd-fr{cursor:pointer;padding:3px 4px;border-radius:6px}
+.hd-fr:hover{background:var(--hover)}
+.hd-fr.off{opacity:.6}
+.hd-fr .hd-val{min-width:96px}
+.hd-ok{margin:0;color:#16a34a;font-weight:600}
+.hd-donut{justify-content:flex-start}
+.hd-donut svg{width:150px;height:150px}
+.hd-donut .hd-ring-n{font-size:24px}
+.hd-dkey>div b{margin-left:auto;padding-left:10px}
+
+/* กล่องสีบ่อแบบย่อ: แถบจุดสี+ตัวเลข กดลูกศรเพื่อกางรายละเอียด */
+#hlegend{width:auto;padding:0;overflow:visible;z-index:1002}
+#hlegend.top{height:46px}
+.hl-bar{display:flex;flex-wrap:nowrap;align-items:center;gap:1px;padding:4px 6px}
+#hlegend.top .hl-bar{flex-wrap:nowrap;height:100%;padding:0 6px}
+.hl-m{font-size:12.5px;font-weight:600;color:var(--muted);padding:0 4px 0 4px;white-space:nowrap}
+#hlegend .hl-bar button{width:auto;min-height:34px;padding:2px 6px;gap:5px;border-radius:10px;font-size:13.5px}
+#hlegend .hl-bar button b{margin-left:0}
+#hlegend .hl-bar .hl-ch.on{background:var(--accent);color:var(--on-accent)}
+#hlegend .hl-bar .hl-tg{padding:2px 6px;color:var(--muted)}
+.hl-drop{position:absolute;left:0;top:calc(100% + 6px);width:230px;padding:6px;z-index:1003;background:var(--solid)}
+#hlegend.top .hl-drop{left:0}
+#hlegend .hl-drop .hl-op,#hlegend .hl-drop .hl-tbl{display:flex}
+@media (max-height:640px) and (min-width:701px){#hlegend{display:block}}
+@media (pointer:coarse){#hlegend .hl-bar button{min-height:44px}}
 </style><!--/WATER-CSS-->
 </head>
 <body>
@@ -1682,7 +1739,7 @@ const HOME_HEADING = 348, HOME_BEARING = (360 - HOME_HEADING) % 360; // ทิ�
 const map = L.map('map', { zoomControl: false, maxZoom: 28, zoomSnap: 0.5, worldCopyJump: true, doubleClickZoom: false,
   rotate: true, bearing: HOME_BEARING, rotateControl: false, touchRotate: true, shiftKeyRotate: false, boxZoom: false });
 // ตำแหน่งเริ่มต้น 14°52.300′N 100°38.687′E (DDM -> องศาทศนิยม)
-const HOME = { c: [14 + 52.277 / 60, 100 + 39.098 / 60], z: 15.5 }; // กึ่งกลางจอ 14°52.277'N 100°39.098'E · z 15.5 ≈ แถบสเกล 300 ม. (z 16 ≈ 200 ม.)
+const HOME = { c: [14 + 52.277 / 60, 100 + 39.098 / 60], z: 14.5 }; // กึ่งกลางจอ 14°52.277'N 100°39.098'E · z 14.5 ≈ แถบสเกล 500 ม. (zoomSnap 0.5: z 15 และ 15.5 ≈ 300 ม., z 16 ≈ 200 ม.)
 map.setView(HOME.c, HOME.z);
 
 const GOOGLE = 'Map data &copy; Google';
@@ -4019,11 +4076,25 @@ function hChange(e) {
 /* ── คำอธิบายสี (ซ้าย) + ค้นหา ── */
 function updateLegend() {
   if (!wOn) return; setTimeout(monBarRender, 0); const t = tally(), defs = legendDefs();
-  $('#hlegend').innerHTML = '<div class="hl-h">สีบ่อตาม <button data-a="wmode" data-v="' + WMODES[(WMODES.findIndex(m => m[0] === wMode) + 1) % WMODES.length][0] + '" title="สลับมุมมองสี">' + WMODES.find(m => m[0] === wMode)[1] + ' ⇄</button></div><button data-f="" class="' + (wfilter ? '' : 'on') + '">ทั้งหมด<b>' + t.total + '</b></button>' +
-    defs.map(s => '<button data-f="' + s.id + '" class="' + (wfilter === s.id ? 'on' : '') + '"><span class="dot" style="background:' + s.c + '"></span>' + s.th + '<b>' + (t[s.id] || 0) + '</b></button>').join('') +
-    '<label class="hl-op">ความทึบสีบ่อ <input type="range" id="hl-fill" min="15" max="90" step="5" value="' + Math.round(wFill * 100) + '"></label>' +
-    '<button class="hl-tbl" data-a="table">ตารางข้อมูล (หลังบ้าน)</button>';
+  const open = !!store.get('hlopen', false), mdef = WMODES.find(m => m[0] === wMode);
+  $('#hlegend').innerHTML = '<div class="hl-bar"><span class="hl-m" title="สีบ่อตาม' + mdef[1] + '">' + mdef[1] + '</span>' +
+    defs.map(d => '<button data-f="' + d.id + '" class="hl-ch' + (wfilter === d.id ? ' on' : '') + '" title="' + d.th + ' ' + (t[d.id] || 0) + ' บ่อ"><span class="dot" style="background:' + d.c + '"></span><b>' + (t[d.id] || 0) + '</b></button>').join('') +
+    '<button id="hl-tog" class="hl-tg" aria-expanded="' + open + '" title="' + (open ? 'ย่อรายละเอียด' : 'ขยายรายละเอียดสีบ่อ') + '"><svg class="ic" viewBox="0 0 24 24"><path d="' + (open ? 'M6 15l6-6 6 6' : 'M6 9l6 6 6-6') + '"/></svg></button></div>' +
+    (open ? '<div class="hl-drop glass"><div class="hl-h">สีบ่อตาม <button data-a="wmode" data-v="' + WMODES[(WMODES.findIndex(m => m[0] === wMode) + 1) % WMODES.length][0] + '" title="สลับมุมมองสี">' + mdef[1] + ' ⇄</button></div><button data-f="" class="' + (wfilter ? '' : 'on') + '">ทั้งหมด<b>' + t.total + '</b></button>' +
+      defs.map(d => '<button data-f="' + d.id + '" class="' + (wfilter === d.id ? 'on' : '') + '"><span class="dot" style="background:' + d.c + '"></span>' + d.th + '<b>' + (t[d.id] || 0) + '</b></button>').join('') +
+      '<label class="hl-op">ความทึบสีบ่อ <input type="range" id="hl-fill" min="15" max="90" step="5" value="' + Math.round(wFill * 100) + '"></label>' +
+      '<button class="hl-tbl" data-a="table">ตารางข้อมูล (หลังบ้าน)</button></div>' : '');
+  legPos();
 }
+/* ตำแหน่งกล่องสีบ่อ: จอกว้างพอ = แถวบนต่อจากปุ่มโหมด (ซ้ายของเข็มทิศ) · แคบ = มุมซ้ายใต้แถวบนเหมือนเดิม */
+function legPos() {
+  const lg = $('#hlegend'); if (!lg || !wOn || getComputedStyle(lg).display === 'none') return;
+  lg.classList.remove('top'); lg.style.left = ''; lg.style.top = ''; lg.style.maxWidth = ''; // วัดความกว้างจริงของแถบย่อก่อน
+  const need = Math.ceil(lg.getBoundingClientRect().width), hm = $('#hmode').getBoundingClientRect(), tw = $('#topwrap').getBoundingClientRect(), left = Math.round(hm.right + 8), avail = Math.round(tw.left - 8 - left);
+  if (innerWidth >= 1200 && hm.width > 0 && need > 0 && avail >= need) { lg.classList.add('top'); lg.style.left = left + 'px'; lg.style.top = Math.round(hm.top) + 'px'; }
+}
+window.addEventListener('resize', legPos); window.addEventListener('load', () => setTimeout(legPos, 50)); if (window.ResizeObserver) { const ro = new ResizeObserver(() => legPos()); ro.observe($('#topwrap')); ro.observe($('#hmode')); }
+document.addEventListener('pointerdown', e => { if (store.get('hlopen', false) && wOn && !e.target.closest('#hlegend')) { store.set('hlopen', false); updateLegend(); } });
 function hSearch(q) {
   q = q.trim().toLowerCase(); const box = $('#hres'); if (!q) { box.hidden = true; return; }
   const out = REG.filter(p => { const r = wRec(p.key); return (p.key + ' ' + r.name + ' ' + r.place + ' ' + WTY[r.type].th + ' ' + r.note).toLowerCase().includes(q); }).slice(0, 14);
@@ -4064,6 +4135,7 @@ $('#rpanel').addEventListener('click', e => { const b = e.target.closest('[data-
 $('#rpanel').addEventListener('change', hChange);
 $('#hlegend').addEventListener('click', e => {
   const b = e.target.closest('button'); if (!b) return;
+  if (b.id === 'hl-tog') { store.set('hlopen', !store.get('hlopen', false)); updateLegend(); return; }
   if (b.dataset.a === 'wmode') { wMode = b.dataset.v; store.set('wmode', wMode); wfilter = null; restyleAll(); updateLegend(); if (!curId) renderDash(); return; }
   if (b.dataset.a) { hAct(b.dataset.a, b); return; }
   const f = b.dataset.f || null; wfilter = f && f === wfilter ? null : f; restyleAll(); updateLegend();
@@ -4171,17 +4243,65 @@ function wdCollect(typeF) {
   });
   return D;
 }
+const hdBucketC = pc => (pc == null ? '#9ca3af' : (WBUCKETS.find(b => pc >= b.lo && pc < b.hi) || WBUCKETS[3]).c);
+function hdRing(p, color, big, small) {
+  const R = 54, C = 2 * Math.PI * R, f = Math.max(0, Math.min(100, p)) / 100 * C;
+  return '<svg class="hd-ring" viewBox="0 0 140 140" role="img" aria-label="' + esc(big + ' ' + small) + '"><circle cx="70" cy="70" r="54" class="hd-ring-bg"/><circle cx="70" cy="70" r="54" class="hd-ring-fg" style="stroke:' + color + '" stroke-dasharray="' + f.toFixed(1) + ' ' + C.toFixed(1) + '" transform="rotate(-90 70 70)"/><text x="70" y="70" text-anchor="middle" class="hd-ring-n">' + esc(big) + '</text><text x="70" y="90" text-anchor="middle" class="hd-ring-l">' + esc(small) + '</text></svg>';
+}
+function hdDonut(parts, centerBig, centerSmall) { // parts: [{label,v,c}]
+  const R = 54, C = 2 * Math.PI * R, tot = parts.reduce((a, p) => a + p.v, 0) || 1; let off = 0;
+  const arcs = parts.filter(p => p.v > 0).map(p => { const len = p.v / tot * C, a = '<circle class="hd-arc" cx="70" cy="70" r="54" fill="none" stroke="' + p.c + '" stroke-width="16" stroke-dasharray="' + Math.max(0, len - 1.5).toFixed(1) + ' ' + C.toFixed(1) + '" stroke-dashoffset="' + (-off).toFixed(1) + '" transform="rotate(-90 70 70)"' + hdTip(p.label, hdN(p.v) + ' ลบ.ม. (' + hdPct(p.v, tot) + '%)') + ' tabindex="0"/>'; off += len; return a; }).join('');
+  return '<div class="hd-donut"><svg viewBox="0 0 140 140" role="img"><circle cx="70" cy="70" r="54" fill="none" class="hd-donut-bg" stroke-width="16"/>' + arcs + '<text x="70" y="70" text-anchor="middle" class="hd-ring-n">' + esc(centerBig) + '</text><text x="70" y="90" text-anchor="middle" class="hd-ring-l">' + esc(centerSmall) + '</text></svg>' +
+    '<div class="hd-dkey">' + parts.map(p => '<div><i style="background:' + p.c + '"></i>' + esc(p.label) + '<b>' + hdPct(p.v, tot) + '%</b></div>').join('') + '</div></div>';
+}
+function hdFillBars(ponds) { // ความยาวแท่ง = ขนาดบ่อ · สีเต็ม = น้ำที่มี
+  const maxCap = Math.max(1, ...ponds.map(p => p.r.cap));
+  return ponds.map(p => { const pc = p.pc == null ? 0 : Math.min(100, p.pc), val = (p.pc == null ? '–' : Math.round(p.pc) + '%') + ' · ' + hdN(p.v);
+    return '<div class="hd-row hd-fr' + (p.r.inSupply ? '' : ' off') + '" data-a="hd-pond" data-id="' + esc(p.key) + '"' + hdTip(p.name + (p.r.inSupply ? '' : ' (ไม่นับในการผลิต)'), hdN(p.v) + ' / ' + hdN(p.r.cap) + ' ลบ.ม.') + ' tabindex="0"><span class="hd-lab" title="' + esc(p.name) + '">' + esc(p.name) + '</span><span class="hd-ftrack"><span class="hd-fcap" style="width:' + Math.max(2, p.r.cap * 100 / maxCap) + '%"><i style="width:' + pc + '%;background:' + (p.r.inSupply ? hdBucketC(p.pc) : '#9ca3af') + '"></i></span></span><b class="hd-val">' + val + '</b></div>'; }).join('');
+}
+function hdNice(v) { const p = Math.pow(10, Math.floor(Math.log10(v || 1))); return ([1, 2, 5, 10].find(x => x * p >= v) || 10) * p; }
+const hdCompact = v => (v >= 1e6 ? +(v / 1e6).toFixed(2) + 'M' : v >= 1e3 ? +(v / 1e3).toFixed(1) + 'k' : String(Math.round(v)));
+function hdCols(rows, lo, hi) { // แท่งแนวตั้งรายเดือน + แถบเกณฑ์
+  const W = 720, H = 210, m = { l: 46, r: 10, t: 16, b: 28 }, iw = W - m.l - m.r, ih = H - m.t - m.b, n = rows.length, gw = iw / n, bw = Math.min(40, gw * 0.6), max = hdNice(Math.max(1, hi || 0, ...rows.map(r => r.v))), Y = v => m.t + ih - ih * Math.min(v, max) / max;
+  let g = ''; for (let i = 0; i <= 4; i++) { const v = max * i / 4; g += '<line x1="' + m.l + '" x2="' + (W - m.r) + '" y1="' + Y(v) + '" y2="' + Y(v) + '" stroke="currentColor" opacity="' + (i ? 0.12 : 0.35) + '"/><text x="' + (m.l - 6) + '" y="' + (Y(v) + 4) + '" text-anchor="end" font-size="11" fill="currentColor" opacity=".7">' + hdCompact(v) + '</text>'; }
+  if (lo && hi) g += '<rect x="' + m.l + '" y="' + Y(hi) + '" width="' + iw + '" height="' + Math.max(1, Y(lo) - Y(hi)) + '" fill="#22c55e" opacity=".14"/><text x="' + (W - m.r - 4) + '" y="' + (Y(hi) - 4) + '" text-anchor="end" font-size="11" fill="#16a34a">เกณฑ์ปกติ ' + hdN(lo) + '–' + hdN(hi) + '</text>';
+  rows.forEach((r, i) => { const cx = m.l + gw * (i + 0.5), over = hi && r.v > hi; g += '<g' + hdTip(r.label, hdN(r.v) + ' ลบ.ม.') + ' tabindex="0"><rect x="' + (cx - bw / 2) + '" y="' + Y(r.v) + '" width="' + bw + '" height="' + Math.max(1, m.t + ih - Y(r.v)) + '" rx="3" fill="' + (over ? 'var(--hd-s2)' : 'var(--hd-s1)') + '"/><text x="' + cx + '" y="' + (Y(r.v) - 4) + '" text-anchor="middle" font-size="11" fill="currentColor">' + hdCompact(r.v) + '</text><text x="' + cx + '" y="' + (H - 9) + '" text-anchor="middle" font-size="11" fill="currentColor" opacity=".8">' + esc(r.short) + '</text></g>'; });
+  return '<svg viewBox="0 0 ' + W + ' ' + H + '" class="mon-svg" role="img" aria-label="ยอดจ่ายน้ำรายเดือน">' + g + '</svg>';
+}
 function wdOverview(D) {
-  const pc = hdPct(D.vol, D.cap), sd = supplyDays(D.vol), s = wSettings();
-  let h = '<div class="hd-kpis">' + hdKpi('น้ำสำรองที่ใช้ผลิตได้', hdN(D.vol), 'ลบ.ม. จากความจุ ' + hdN(D.cap) + ' (' + pc + '%)', true) +
-    hdKpi('อายุน้ำสำรอง', D.vol ? (sd.min / 30).toFixed(1) + '–' + (sd.max / 30).toFixed(1) : '-', 'เดือน · ใช้น้ำ ' + hdN(s.useLow) + '–' + hdN(s.useHigh) + ' ลบ.ม./วัน') +
-    hdKpi('บ่อที่ใช้งาน', D.ponds.filter(p => p.r.status === 'active').length + ' / ' + D.ponds.length, 'บ่อ') + hdKpi('งานซ่อมค้าง', hdN(D.maint.length), 'รายการ') + hdKpi('ค่าที่ไม่ตรงกัน', hdN(D.alts.length), 'บ่อที่ต้องตรวจสอบ') + '</div><div class="hd-grid">';
-  h += hdCard('ปริมาณน้ำรายบ่อ', 'น้ำปัจจุบัน เทียบกับพื้นที่ว่างของบ่อ (ความจุ − น้ำ)', hdStack(D.ponds.map(p => ({ label: p.name, v: { w: p.v, f: Math.max(0, p.r.cap - p.v) } })), [{ id: 'w', name: 'น้ำปัจจุบัน', c: 'var(--hd-s1)' }, { id: 'f', name: 'พื้นที่ว่าง', c: 'rgba(148,163,184,.45)' }]),
-    hdTableOf(['บ่อ', 'น้ำ (ลบ.ม.)', 'ความจุ (ลบ.ม.)', '% เต็ม'], D.ponds.map(p => [p.name, hdN(p.v), hdN(p.r.cap), p.pc == null ? '-' : Math.round(p.pc) + '%'])), true);
-  h += hdBarCard('% เต็มของแต่ละบ่อ', 'เทียบกับความจุของบ่อ', D.ponds.map(p => ({ label: p.name, v: Math.round(p.pc || 0), c: p.r.inSupply ? 'var(--hd-s1)' : '#9ca3af' })), { max: 100, fmt: r => r.v + '%' });
-  h += hdBarCard('น้ำแยกตามประเภทบ่อ', 'ปริมาณน้ำปัจจุบัน (ลบ.ม.)', WTYPES.filter(t => D.byType[t.id]).map(t => ({ label: t.th + ' (' + D.byType[t.id].n + ' บ่อ)', v: D.byType[t.id].vol, c: t.c })), { fmt: r => hdN(r.v) });
-  h += hdCard('ค่าที่ไม่ตรงกัน', 'เอกสาร vs แผนที่ — คลิกเพื่อเปิดบ่อแล้วเลือกค่า', hdList(D.alts.map(a => ({ id: a.id, name: a.name, t: a.keys.map(k => FIELD_TH[k] || k).join(', ') })), 'ไม่มีค่าที่ขัดแย้ง'), '');
-  h += hdCard('งานซ่อมค้าง', 'เก่าสุดก่อน — คลิกเพื่อเปิดบ่อ', hdList(D.maint.sort((a, b) => (a.m.date || '').localeCompare(b.m.date || '')).slice(0, 10).map(x => ({ id: x.id, name: x.name, t: x.m.title, s: thDate(x.m.date) })), 'ไม่มีงานซ่อมค้าง'), '');
+  const s = wSettings(), pc = hdPct(D.vol, D.cap), sd = supplyDays(D.vol), st = monStatus(sd.min) || MON_ST[3], counted = D.ponds.filter(p => p.r.inSupply);
+  const nAct = D.ponds.filter(p => p.r.status === 'active').length;
+  let h = '<p class="hd-sum" style="--sc:' + st[2] + '">น้ำสำรองพอใช้ประมาณ <b>' + (D.vol ? nf(sd.min) + '–' + nf(sd.max) + ' วัน' : '–') + '</b>' + (D.vol ? ' (' + (sd.min / 30).toFixed(1) + '–' + (sd.max / 30).toFixed(1) + ' เดือน)' : '') + ' · มีน้ำ <b>' + pc + '%</b> ของความจุ · ใช้งานอยู่ <b>' + nAct + ' จาก ' + D.ponds.length + '</b> บ่อ <span class="mon-chip" style="background:' + st[2] + '">' + st[1] + '</span></p>';
+  /* 3 การ์ดหลัก */
+  const lvl = (WBUCKETS.find(b => pc >= b.lo && pc < b.hi) || WBUCKETS[3]).c;
+  const SC = [90, 90, 185, 175], SCOL = ['#ef4444', '#f97316', '#eab308', '#22c55e'], tot = 540, pos = d => Math.min(100, d * 100 / tot);
+  const bk = WBUCKETS.map(b => ({ b, n: counted.filter(p => p.pc != null && p.pc >= b.lo && p.pc < b.hi).length })), nNa = D.ponds.length - counted.length;
+  h += '<div class="hd-hero">' +
+    '<section class="hd-card hd-hc"><h3>น้ำสำรองที่ใช้ได้</h3><div class="hd-hrow">' + hdRing(pc, lvl, pc + '%', 'ของความจุ') + '<div class="hd-hn"><b>' + hdN(D.vol) + '</b><span>ลบ.ม. ที่มีอยู่</span><small>ความจุรวม ' + hdN(D.cap) + '</small></div></div></section>' +
+    '<section class="hd-card hd-hc"><h3>อยู่ได้กี่วัน (ถ้าถูกตัดขาด)</h3><div class="hd-days" style="color:' + st[2] + '">' + (D.vol ? nf(sd.min) + '<small> – </small>' + nf(sd.max) : '–') + '<small> วัน</small></div>' +
+      '<div class="hd-scale">' + SC.map((w, i) => '<i style="flex:' + w + ';background:' + SCOL[i] + '"></i>').join('') + (D.vol ? '<span class="hd-mk" style="left:' + pos(sd.min) + '%"><em>เลวร้ายสุด</em></span><span class="hd-mk b" style="left:' + pos(sd.max) + '%"><em>ดีสุด</em></span>' : '') + '</div>' +
+      '<div class="hd-sticks"><span style="left:' + pos(90) + '%">90</span><span style="left:' + pos(180) + '%">180</span><span style="left:' + pos(365) + '%">365+</span></div>' +
+      '<small class="muted">ใช้น้ำ ' + hdN(s.useHigh) + ' / ' + hdN(s.useLow) + ' ลบ.ม./วัน (เลวร้ายสุด / ดีสุด)</small></section>' +
+    '<section class="hd-card hd-hc"><h3>ระดับน้ำของบ่อ</h3><div class="hd-lv">' + bk.map(x => '<div class="hd-lvc" style="--c:' + x.b.c + '"' + hdTip(x.b.th, x.n + ' บ่อ') + '><b>' + x.n + '</b><span>' + x.b.th + '</span></div>').join('') + '</div>' +
+      '<div class="hbar" style="height:12px">' + bk.filter(x => x.n).map(x => '<i style="flex:' + x.n + ';background:' + x.b.c + '"></i>').join('') + '</div><small class="muted">' + counted.length + ' บ่อที่นับในการผลิต' + (nNa ? ' · ไม่นับ ' + nNa + ' บ่อ' : '') + '</small></section></div><div class="hd-grid">';
+  /* น้ำในแต่ละบ่อ */
+  const byVol = D.ponds.slice().sort((a, b) => b.v - a.v);
+  h += hdCard('น้ำในแต่ละบ่อ', 'ความยาวแท่ง = ขนาดบ่อ · ส่วนสีเต็ม = น้ำที่มี (สีตามระดับ) · คลิกเพื่อเปิดบ่อ', '<div class="hd-key"><span><i style="background:#ef4444"></i>&lt;25%</span><span><i style="background:#f59e0b"></i>25–50%</span><span><i style="background:#22c55e"></i>50–75%</span><span><i style="background:#0ea5e9"></i>75%+</span><span><i style="background:#9ca3af"></i>ไม่นับ</span></div>' + hdFillBars(byVol),
+    hdTableOf(['บ่อ', 'น้ำ (ลบ.ม.)', 'ความจุ (ลบ.ม.)', '% เต็ม'], byVol.map(p => [p.name, hdN(p.v), hdN(p.r.cap), p.pc == null ? '-' : Math.round(p.pc) + '%'])), true);
+  /* ประเภท + ความเสี่ยง */
+  h += hdCard('น้ำแยกตามประเภทบ่อ', 'สัดส่วนปริมาณน้ำปัจจุบัน', hdDonut(WTYPES.filter(t => D.byType[t.id]).map(t => ({ label: t.th, v: D.byType[t.id].vol, c: t.c })), nf(D.volAll / 1000) + 'k', 'ลบ.ม. รวม'),
+    hdTableOf(['ประเภท', 'บ่อ', 'น้ำ (ลบ.ม.)'], WTYPES.filter(t => D.byType[t.id]).map(t => [t.th, D.byType[t.id].n, hdN(D.byType[t.id].vol)])));
+  const risk = counted.filter(p => p.v > 0).sort((a, b) => b.v - a.v).slice(0, 5).map(p => ({ label: p.name, v: hdPct(p.v, D.vol), id: p.key, d: simDays(Math.max(0, D.vol - p.v), s.useHigh, s.lossPct).days }));
+  h += hdCard('ถ้าขาดบ่อนี้ไป กระทบแค่ไหน', 'บ่อที่มีน้ำมากสุด 5 อันดับ — สัดส่วนน้ำ และจำนวนวันที่เหลือถ้าไม่มีบ่อนั้น (ใช้น้ำสูงสุด)',
+    risk.map(r => '<div class="hd-row hd-fr" data-a="hd-pond" data-id="' + esc(r.id) + '"' + hdTip(r.label, 'ขาดแล้วเหลือ ' + (r.d >= 7300 ? '>20 ปี' : nf(r.d) + ' วัน')) + ' tabindex="0"><span class="hd-lab" title="' + esc(r.label) + '">' + esc(r.label) + '</span><span class="hd-track"><i style="width:' + Math.max(2, r.v) + '%;background:var(--hd-s2)"></i></span><b class="hd-val">' + r.v + '% → ' + (r.d >= 7300 ? '>20 ปี' : nf(r.d) + ' วัน') + '</b></div>').join('') || '<p class="muted">ยังไม่มีข้อมูล</p>',
+    hdTableOf(['บ่อ', 'สัดส่วนน้ำ', 'ขาดแล้วเหลือ (วัน)'], risk.map(r => [r.label, r.v + '%', nf(r.d)])));
+  /* น้ำคงเหลือตามเวลา */
+  if (D.vol) { const worst = simDays(D.vol, s.useHigh, s.lossPct, true), best = simDays(D.vol, s.useLow, s.lossPct, true), horizon = Math.min(7300, Math.max(60, Math.ceil(best.days * 1.04)));
+    h += hdCard('น้ำคงเหลือตามเวลา', 'เส้นส้ม = ใช้น้ำ ' + hdN(s.useHigh) + ' ลบ.ม./วัน · เส้นน้ำเงิน = ' + hdN(s.useLow) + ' ลบ.ม./วัน', monChart(D.vol, [{ c: best.c, maxD: best.days, color: 'var(--hd-s1)' }, { c: worst.c, maxD: worst.days, color: 'var(--hd-s2)' }], horizon), '', true); }
+  /* เรื่องที่ต้องดู */
+  const att = hdList(D.maint.sort((a, b) => (a.m.date || '').localeCompare(b.m.date || '')).slice(0, 6).map(x => ({ id: x.id, name: x.name, t: '🔧 ' + x.m.title, s: thDate(x.m.date) })), '') + hdList(D.alts.map(a => ({ id: a.id, name: a.name, t: '⚠ ค่าไม่ตรงกัน: ' + a.keys.map(k => FIELD_TH[k] || k).join(', ') })), '');
+  const attc = att.replace(/<p class="muted">[^<]*<\/p>/g, '');
+  h += hdCard('เรื่องที่ต้องดู', 'งานซ่อมค้าง ' + D.maint.length + ' · ค่าไม่ตรงกัน ' + D.alts.length + ' — คลิกเพื่อเปิดบ่อ', attc.trim() || '<p class="hd-ok">✓ ไม่มีงานซ่อมค้าง และไม่มีค่าที่ขัดแย้ง</p>', '', true);
   return h + '</div>';
 }
 function wdUse(D) {
@@ -4196,7 +4316,7 @@ function wdUse(D) {
     '<label>ยอดจ่ายต่ำสุด (ลบ.ม./เดือน)<input type="text" inputmode="decimal" data-set="monthLow" value="' + s.monthLow + '"></label><label>ยอดจ่ายสูงสุด (ลบ.ม./เดือน)<input type="text" inputmode="decimal" data-set="monthHigh" value="' + s.monthHigh + '"></label>' +
     '<label>กำลังผลิต (ลบ.ม./ชม.)<input type="text" inputmode="decimal" data-set="prodRate" value="' + s.prodRate + '"></label></div></section>';
   const rows = fl.slice(-12);
-  h += hdCard('ยอดจ่ายน้ำรายเดือน', rows.length ? '12 เดือนล่าสุด (ลบ.ม.)' : 'ยังไม่มีข้อมูล', rows.length ? hdBars(rows.map(f => ({ label: thMonth(f.m), v: f.supply })), { fmt: r => hdN(r.v) }) : '<p class="muted">ยังไม่มีข้อมูล</p>',
+  h += hdCard('ยอดจ่ายน้ำรายเดือน', rows.length ? '12 เดือนล่าสุด (ลบ.ม.)' : 'ยังไม่มีข้อมูล', rows.length ? hdCols(rows.map(f => ({ label: thMonth(f.m), short: thMonth(f.m).split(' ')[0], v: f.supply })), s.monthLow, s.monthHigh) : '<p class="muted">ยังไม่มีข้อมูล</p>',
     rows.length ? hdTableOf(['เดือน', 'ยอดจ่าย', 'ผลิต'], rows.map(f => [thMonth(f.m), hdN(f.supply), f.prod ? hdN(f.prod) : '-'])) : '', true);
   if (fl.length && edit) h += hdCard('ลบรายการรายเดือน', '', '<div class="hd-list">' + fl.slice().reverse().slice(0, 12).map(f => '<button class="hd-item" data-a="flow-del" data-m="' + esc(f.m) + '"><b>' + esc(thMonth(f.m)) + '</b><span>' + hdN(f.supply) + ' ลบ.ม.</span><small>ลบ ✕</small></button>').join('') + '</div>', '');
   return h + '</div>';
